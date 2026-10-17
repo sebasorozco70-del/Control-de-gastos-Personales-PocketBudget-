@@ -1,26 +1,86 @@
- # PocketBudget - Control de Gastos en C++
+# PocketBudget
 
-Aplicación de consola ligera desarrollada en C++ utilizando Programación Orientada a Objetos (POO). Su diseño es minimalista y directo, ideal para cumplir con restricciones académicas de líneas de código y servir como una arquitectura limpia y escalable.
-
----
-
-## 🚀 Características Principales
-* **Configuración inicial:** Permite definir un presupuesto límite personalizado al iniciar el programa.
-* **Registro de gastos:** Ingreso interactivo de descripción, categoría y monto por cada transacción.
-* **Historial y Balance:** Muestra la lista de gastos registrados, el total acumulado y el presupuesto disponible.
-* **Sistema de alertas:** Notifica de forma automática en consola si el usuario ha superado su límite de presupuesto.
+## 📌 Nombre de la aplicación y problema que resuelve
+* **Nombre de la aplicación:** PocketBudget (Control de Gastos Personales en Consola).
+* **Problema que resuelve:** Permite a los usuarios llevar un registro ordenado y en tiempo real de sus egresos diarios y finanzas personales, calculando de forma automática los balances, ingresos extra y emitiendo alertas cuando el presupuesto límite es superado.
 
 ---
 
-## 🛠️ Requisitos Técnicos
-* Un compilador de C++ compatible con **C++11** o superior (como `g++`, Clang o MSVC).
+## 🛠️ Patrones de Diseño Seleccionados
+
+1. **Creacional: Factory Method**
+   * **Rol en la aplicación:** Encapsula y centraliza la lógica de creación de objetos de tipo `Gasto` (distinguiendo entre gastos normales y gastos fijos), evitando que la fachada o la función principal dependan directamente de constructores complejos con operadores `new`.
+2. **Estructural: Facade**
+   * **Rol en la aplicación:** Oculta la complejidad del sistema interno (manejo de vectores de punteros, cálculos de totales y llamadas al observador) exponiendo una interfaz unificada y limpia (`BilleteraFacade`) para el menú principal.
+3. **De Comportamiento: Observer**
+   * **Rol en la aplicación:** Desacopla el sistema de notificaciones financieras. La fachada notifica de forma reactiva al observador (`AlertaConsola`) cada vez que se agrega un gasto o un ingreso, actualizando las alertas financieras en pantalla sin mezclar lógica de impresión con la lógica de negocio.
 
 ---
 
-## 💻 Instrucciones de Compilación y Ejecución
+## 📊 Diagrama de Clases y Relaciones entre Patrones
 
-1. Clona o descarga el archivo fuente del proyecto (ej. `main.cpp`).
-2. Abre tu terminal o consola en la carpeta del archivo.
-3. Compila el programa ejecutando el siguiente comando:
-   ```bash
-   g++ main.cpp -o pocket_budget
+```mermaid
+classDiagram
+    class BilleteraFacade {
+        -vector<Gasto*> gastos
+        -double presupuestoLimite
+        -ObservadorPresupuesto* observador
+        +registrarGasto()
+        +agregarIngresoExtra()
+        +mostrarHistorial()
+    }
+    class GastoFactory {
+        +crearGasto() static
+    }
+    class Gasto {
+        <<interface>>
+        +getMonto()
+        +mostrar()
+    }
+    class GastoGeneral {
+        +mostrar()
+    }
+    class ObservadorPresupuesto {
+        <<interface>>
+        +actualizar()
+    }
+    class AlertaConsola {
+        +actualizar()
+    }
+    BilleteraFacade --> GastoFactory : Usa (Factory)
+    GastoFactory ..> Gasto : Produce
+    Gasto <|.. GastoGeneral : Hereda
+    BilleteraFacade --> ObservadorPresupuesto : Notifica (Observer)
+    ObservadorPresupuesto <|.. AlertaConsola : Implementa
+
+## 🖥️ Salida de Consola Esperada
+
+```text
+=== CONFIGURACION INICIAL POCKETBUDGET ===
+Ingrese su presupuesto limite inicial ($): 50000
+
+--- MENU PRINCIPAL ---
+1. Registrar gasto normal
+2. Registrar gasto fijo (Fabrica)
+3. Agregar ingreso extra 💵
+4. Ver historial y balance
+5. Salir
+Seleccione una opcion: 1
+Descripcion: Almuerzo
+Categoria: Comida
+Monto ($): 15000
+¡Gasto registrado con exito!
+----------------------------------------
+💡 [AVISO OBSERVER] Presupuesto total disponible: $35000.00
+
+--- MENU PRINCIPAL ---
+1. Registrar gasto normal
+2. Registrar gasto fijo (Fabrica)
+3. Agregar ingreso extra 💵
+4. Ver historial y balance
+5. Salir
+Seleccione una opcion: 3
+Monto del ingreso extra ($): 20000
+💵 ¡Ingreso extra de $20000.00 agregado correctamente!
+----------------------------------------
+💡 [AVISO OBSERVER] Presupuesto total disponible: $55000.00
