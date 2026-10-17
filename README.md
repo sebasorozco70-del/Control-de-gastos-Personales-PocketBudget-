@@ -53,7 +53,7 @@ classDiagram
     BilleteraFacade --> ObservadorPresupuesto : Notifica (Observer)
     ObservadorPresupuesto <|.. AlertaConsola : Implementa
 
-## 🖥️ Salida de Consola Esperada
+ 🖥️ Salida de Consola Esperada
 
 ```text
 === CONFIGURACION INICIAL POCKETBUDGET ===
