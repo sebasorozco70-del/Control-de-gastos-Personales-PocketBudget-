@@ -80,6 +80,7 @@ Ingrese su presupuesto limite inicial ($): 50000
 3. Agregar ingreso extra 
 4. Ver historial y balance
 5. Salir
+
 Seleccione una opcion: 1
 Descripcion: Almuerzo
 Categoria: Comida
@@ -94,6 +95,7 @@ Monto ($): 15000
 3. Agregar ingreso extra 
 4. Ver historial y balance
 5. Salir
+
 Seleccione una opcion: 3
 Monto del ingreso extra ($): 20000
  ¡Ingreso extra de $20000.00 agregado correctamente!
