@@ -69,5 +69,36 @@ classDiagram
     BilleteraFacade o-- Gasto : Contiene
     BilleteraFacade --> ObservadorPresupuesto : Notifica a
 
+## Salida de consola esperada
+
+=== CONFIGURACION INICIAL POCKETBUDGET ===
+Ingrese su presupuesto limite inicial ($): 50000
+
+--- MENU PRINCIPAL ---
+1. Registrar gasto normal
+2. Registrar gasto fijo (Fabrica)
+3. Agregar ingreso extra 💵
+4. Ver historial y balance
+5. Salir
+Seleccione una opcion: 1
+Descripcion: Almuerzo
+Categoria: Comida
+Monto ($): 15000
+¡Gasto registrado con exito!
+----------------------------------------
+💡 [AVISO OBSERVER] Presupuesto total disponible: $35000.00
+
+--- MENU PRINCIPAL ---
+1. Registrar gasto normal
+2. Registrar gasto fijo (Fabrica)
+3. Agregar ingreso extra 💵
+4. Ver historial y balance
+5. Salir
+Seleccione una opcion: 3
+Monto del ingreso extra ($): 20000
+💵 ¡Ingreso extra de $20000.00 agregado correctamente!
+----------------------------------------
+💡 [AVISO OBSERVER] Presupuesto total disponible: $55000.00
+
 
   
