@@ -17,10 +17,10 @@ public:
     void actualizar(double totalGastado, double limite) override {
         cout << "----------------------------------------\n";
         if (totalGastado > limite) {
-            cout << "⚠️ [ALERTA OBSERVER] ¡Presupuesto superado! Gastado: $" 
+            cout << "[ALERTA OBSERVER] ¡Presupuesto superado! Gastado: $" 
                  << fixed << setprecision(2) << totalGastado << " | Limite actual: $" << limite << endl;
         } else {
-            cout << "💡 [AVISO OBSERVER] Presupuesto total disponible: $" 
+            cout << " [AVISO OBSERVER] Presupuesto total disponible: $" 
                  << fixed << setprecision(2) << (limite - totalGastado) << endl;
         }
     }
@@ -90,7 +90,7 @@ public:
             return;
         }
         presupuestoLimite += montoExtra;
-        cout << "💵 ¡Ingreso extra de $" << fixed << setprecision(2) << montoExtra << " agregado correctamente!\n";
+        cout << " ¡Ingreso extra de $" << fixed << setprecision(2) << montoExtra << " agregado correctamente!\n";
         notificarObservador();
     }
 
@@ -142,7 +142,7 @@ int main() {
         cout << "\n--- MENU PRINCIPAL ---\n";
         cout << "1. Registrar gasto normal\n";
         cout << "2. Registrar gasto fijo (Fabrica)\n";
-        cout << "3. Agregar ingreso extra 💵\n";
+        cout << "3. Agregar ingreso extra \n";
         cout << "4. Ver historial y balance\n";
         cout << "5. Salir\n";
         cout << "Seleccione una opcion: ";
