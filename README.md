@@ -48,11 +48,11 @@ Seleccione una opcion: 3
 Monto del ingreso extra ($): 20000
 💵 ¡Ingreso extra de $20000.00 agregado correctamente!
 ----------------------------------------
-💡 [AVISO OBSERVER] Presupuesto total disponible: $55000.00
+💡 [AVISO OBSERVER] Presupuesto total disponible: $55000.00. 
 
 -----
 
-  Diagrama de Clases y Relaciones entre Patrones
+  ##Diagrama de Clases y Relaciones entre Patrones
 
 ```mermaid
 classDiagram
