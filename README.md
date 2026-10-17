@@ -1,4 +1,6 @@
 # PocketBudget
+## Integrantes 
+Sebastian Orozco Quintero
 
 ## 📌 Nombre de la aplicación y problema que resuelve
 * **Nombre de la aplicación:** PocketBudget (Control de Gastos Personales en Consola).
@@ -16,6 +18,39 @@
    * **Rol en la aplicación:** Desacopla el sistema de notificaciones financieras. La fachada notifica de forma reactiva al observador (`AlertaConsola`) cada vez que se agrega un gasto o un ingreso, actualizando las alertas financieras en pantalla sin mezclar lógica de impresión con la lógica de negocio.
 
 ---
+Salida de Consola Esperada
+
+```text
+=== CONFIGURACION INICIAL POCKETBUDGET ===
+Ingrese su presupuesto limite inicial ($): 50000
+
+--- MENU PRINCIPAL ---
+1. Registrar gasto normal
+2. Registrar gasto fijo (Fabrica)
+3. Agregar ingreso extra 💵
+4. Ver historial y balance
+5. Salir
+Seleccione una opcion: 1
+Descripcion: Almuerzo
+Categoria: Comida
+Monto ($): 15000
+¡Gasto registrado con exito!
+----------------------------------------
+💡 [AVISO OBSERVER] Presupuesto total disponible: $35000.00
+
+--- MENU PRINCIPAL ---
+1. Registrar gasto normal
+2. Registrar gasto fijo (Fabrica)
+3. Agregar ingreso extra 💵
+4. Ver historial y balance
+5. Salir
+Seleccione una opcion: 3
+Monto del ingreso extra ($): 20000
+💵 ¡Ingreso extra de $20000.00 agregado correctamente!
+----------------------------------------
+💡 [AVISO OBSERVER] Presupuesto total disponible: $55000.00
+
+-----
 
   Diagrama de Clases y Relaciones entre Patrones
 
@@ -68,34 +103,4 @@ classDiagram
     BilleteraFacade --> ObservadorPresupuesto : Notifica a
 
 
-  Salida de Consola Esperada
-
-```text
-=== CONFIGURACION INICIAL POCKETBUDGET ===
-Ingrese su presupuesto limite inicial ($): 50000
-
---- MENU PRINCIPAL ---
-1. Registrar gasto normal
-2. Registrar gasto fijo (Fabrica)
-3. Agregar ingreso extra 💵
-4. Ver historial y balance
-5. Salir
-Seleccione una opcion: 1
-Descripcion: Almuerzo
-Categoria: Comida
-Monto ($): 15000
-¡Gasto registrado con exito!
-----------------------------------------
-💡 [AVISO OBSERVER] Presupuesto total disponible: $35000.00
-
---- MENU PRINCIPAL ---
-1. Registrar gasto normal
-2. Registrar gasto fijo (Fabrica)
-3. Agregar ingreso extra 💵
-4. Ver historial y balance
-5. Salir
-Seleccione una opcion: 3
-Monto del ingreso extra ($): 20000
-💵 ¡Ingreso extra de $20000.00 agregado correctamente!
-----------------------------------------
-💡 [AVISO OBSERVER] Presupuesto total disponible: $55000.00
+  
