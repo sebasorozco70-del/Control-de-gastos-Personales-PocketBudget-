@@ -68,6 +68,7 @@ classDiagram
     BilleteraFacade --> GastoFactory : Usa
     BilleteraFacade o-- Gasto : Contiene
     BilleteraFacade --> ObservadorPresupuesto : Notifica a
+```
 
 ## Salida de consola esperada
 
