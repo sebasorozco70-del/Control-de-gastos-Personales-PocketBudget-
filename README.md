@@ -17,43 +17,58 @@
 
 ---
 
-## 📊 Diagrama de Clases y Relaciones entre Patrones
+  Diagrama de Clases y Relaciones entre Patrones
 
 ```mermaid
 classDiagram
-    class BilleteraFacade {
-        -vector<Gasto*> gastos
-        -double presupuestoLimite
-        -ObservadorPresupuesto* observador
-        +registrarGasto()
-        +agregarIngresoExtra()
-        +mostrarHistorial()
-    }
-    class GastoFactory {
-        +crearGasto() static
-    }
     class Gasto {
-        <<interface>>
-        +getMonto()
-        +mostrar()
+        <<abstract>>
+        #string descripcion
+        #string categoria
+        #double monto
+        +getMonto() double
+        +mostrar()* void
     }
+
     class GastoGeneral {
-        +mostrar()
+        +GastoGeneral(string desc, string cat, double m)
+        +mostrar() void
     }
+
+    class GastoFactory {
+        +crearGasto(int tipo, string desc, string cat, double monto) Gasto*
+    }
+
     class ObservadorPresupuesto {
         <<interface>>
-        +actualizar()
+        +actualizar(double totalGastado, double limite)* void
     }
-    class AlertaConsola {
-        +actualizar()
-    }
-    BilleteraFacade --> GastoFactory : Usa (Factory)
-    GastoFactory ..> Gasto : Produce
-    Gasto <|.. GastoGeneral : Hereda
-    BilleteraFacade --> ObservadorPresupuesto : Notifica (Observer)
-    ObservadorPresupuesto <|.. AlertaConsola : Implementa
 
- 🖥️ Salida de Consola Esperada
+    class AlertaConsola {
+        +actualizar(double totalGastado, double limite) void
+    }
+
+    class BilleteraFacade {
+        -vector~Gasto*~ gastos
+        -double presupuestoLimite
+        -ObservadorPresupuesto* observador
+        +BilleteraFacade(double limite, ObservadorPresupuesto* obs)
+        +registrarGasto(int tipo, string desc, string cat, double monto) void
+        +agregarIngresoExtra(double montoExtra) void
+        +calcularTotalGastos() double
+        +notificarObservador() void
+        +mostrarHistorial() void
+    }
+
+    Gasto <|-- GastoGeneral : Hereda
+    GastoFactory ..> Gasto : Produce (Factory Method)
+    ObservadorPresupuesto <|.. AlertaConsola : Implementa (Observer)
+    BilleteraFacade --> GastoFactory : Usa
+    BilleteraFacade o-- Gasto : Contiene
+    BilleteraFacade --> ObservadorPresupuesto : Notifica a
+
+
+  Salida de Consola Esperada
 
 ```text
 === CONFIGURACION INICIAL POCKETBUDGET ===
