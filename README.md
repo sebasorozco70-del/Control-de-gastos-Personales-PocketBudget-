@@ -102,7 +102,6 @@ Monto del ingreso extra ($): 20000
 ----------------------------------------
  [AVISO OBSERVER] Presupuesto total disponible: $55000.00
 ----------------------------------------
- [AVISO OBSERVER] Presupuesto total disponible: $55000.00
 
 
   
